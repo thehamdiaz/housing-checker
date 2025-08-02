@@ -7,6 +7,7 @@ def send_telegram(message):
     url = f"https://api.telegram.org/bot{token}/sendMessage"
     try:
         requests.get(url, params={"chat_id": chat_id, "text": message})
+        print("Telegram response:", response.text)
     except Exception as e:
         print(f"Telegram error: {e}")
 
@@ -14,7 +15,6 @@ def check_fac():
     fac = [
         "https://www.fac-habitat.com/fr/residences-etudiantes/id-57-philosophia",
         "https://www.fac-habitat.com/fr/residences-etudiantes/id-46-belle-isle",
-        # Add more URLs here...
     ]
     for url in fac:
         try:
