@@ -26,12 +26,19 @@ def check_fac():
         except Exception as e:
             print(f"Error: {e}")
 
-def check_crous():
-    url = "https://trouverunlogement.lescrous.fr/tools/36/search?maxPrice=600&occupationModes=alone&bounds=2.224122_48.902156_2.4697602_48.8155755"
+def check_crous_Tours():
+    url = "https://trouverunlogement.lescrous.fr/tools/41/search?occupationModes=alone&bounds=0.2885071238975235_48.10559716402152_1.8238464793662736_46.74550709985597"
     content = requests.get(url).text
     if "Aucun logement trouv" not in content and "Serveur satur" not in content:
-        send_telegram("Crous alert! Room found:\n" + url)
+        send_telegram("Crous Tours alert! Room found:\n" + url)
+
+def check_crous_IDF():
+    url = "https://trouverunlogement.lescrous.fr/tools/41/search?occupationModes=alone&bounds=1.524108116042711_49.384160800744986_3.0594474715114615_48.057889555610984"
+    content = requests.get(url).text
+    if "Aucun logement trouv" not in content and "Serveur satur" not in content:
+        send_telegram("Crous IDF alert! Room found:\n" + url)
 
 if __name__ == "__main__":
     check_fac()
-    check_crous()
+    check_crous_Tours()
+    check_crous_IDF()
